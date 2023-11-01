@@ -27,14 +27,14 @@ class mainModel
         return $connection;
     }
 
-    protected function executeQuery($query)
+    protected function executeQuery(string $query)
     {
         $sql = $this->connect()->prepare($query);
         $sql->execute();
         return $sql;
     }
 
-    public function cleanString($string)
+    public function cleanString(string $string)
     {
         $words = ["<script>", "</script>", "<script src", "<script type=", "SELECT * FROM", "SELECT ", " SELECT ", "DELETE FROM", "INSERT INTO", "DROP TABLE", "DROP DATABASE", "TRUNCATE TABLE", "SHOW TABLES", "SHOW DATABASES", "<?php", "?>", "--", "^", "<", ">", "==", "=", ";", "::"];
 
@@ -49,5 +49,39 @@ class mainModel
         $string = stripslashes($string);
 
         return $string;
+    }
+
+    protected function verifyData(string $filter, string $string)
+    {
+        $result = (preg_match("/^.$filter.$/", $string)) ? true : false;
+        return $result;
+    }
+
+    protected function saveData(string $table, array $data)
+    {
+        $query = "INSERT INTO $table (";
+        $C = 0;
+
+        foreach ($data as $key) {
+            if ($C >= 1) $query .= ",";
+            $query .= $key['name'];
+            $C++;
+        }
+
+        $query .= ") VALUES (";
+        $C = 0;
+
+        foreach ($data as $key) {
+            if ($C >= 1) $query .= ",";
+            $query .= $key['field'];
+            $C++;
+        }
+
+        $query .= ")";
+        $sql = $this->connect()->prepare($query);
+
+        foreach ($data as $key) {
+            $sql->bindParam($key['field'], $key['value']);
+        }
     }
 }
