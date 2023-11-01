@@ -83,5 +83,8 @@ class mainModel
         foreach ($data as $key) {
             $sql->bindParam($key['field'], $key['value']);
         }
+
+        $sql->execute();
+        return $sql;
     }
 }
