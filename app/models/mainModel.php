@@ -136,4 +136,56 @@ class mainModel
         $sql->execute();
         return $sql;
     }
+
+    protected function tablesPaginator(int $page, int $numPages, string $url, int $buttons)
+    {
+        $table = '<nav class="pagination is-centered is-rounded" role="navigation" aria-label="pagination">';
+
+        if ($page <= 1) {
+            $table .= '
+            <a class="pagination-previous is-disabled" disabled >Anterior</a>
+            <ul class="pagination-list">
+            ';
+        } else {
+            $table .= '
+            <a class="pagination-previous" href="' . $url . ($page - 1) . '/">Anterior</a>
+            <ul class="pagination-list">
+                <li><a class="pagination-link" href="' . $url . '1/">1</a></li>
+                <li><span class="pagination-ellipsis">&hellip;</span></li>
+            ';
+        }
+
+        $ci = 0;
+        for ($i = $page; $i <= $numPages; $i++) {
+
+            if ($ci >= $buttons) {
+                break;
+            }
+
+            if ($page == $i) {
+                $table .= '<li><a class="pagination-link is-current" href="' . $url . $i . '/">' . $i . '</a></li>';
+            } else {
+                $table .= '<li><a class="pagination-link" href="' . $url . $i . '/">' . $i . '</a></li>';
+            }
+
+            $ci++;
+        }
+
+        if ($page == $numPages) {
+            $table .= '
+            </ul>
+            <a class="pagination-next is-disabled" disabled >Siguiente</a>
+            ';
+        } else {
+            $table .= '
+                <li><span class="pagination-ellipsis">&hellip;</span></li>
+                <li><a class="pagination-link" href="' . $url . $numPages . '/">' . $numPages . '</a></li>
+            </ul>
+            <a class="pagination-next" href="' . $url . ($page + 1) . '/">Siguiente</a>
+	        ';
+        }
+
+        $table .= '</nav>';
+        return $table;
+    }
 }
