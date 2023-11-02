@@ -87,4 +87,22 @@ class mainModel
         $sql->execute();
         return $sql;
     }
+
+    public function selectData(string $type, string $table, string $field, int $id)
+    {
+        $type = $this->cleanString($type);
+        $table = $this->cleanString($table);
+        $field = $this->cleanString($field);
+        $id = $this->cleanString($id);
+
+        if ($type == 'Unique') {
+            $sql = $this->connect()->prepare("SELECT * FROM $table WHERE $field = :ID");
+            $sql->bindParam(":ID", $id);
+        } elseif ($type == 'Normal') {
+            $sql = $this->connect()->prepare("SELECT $field FROM $table");
+        }
+        
+        $sql->execute();
+        return $sql;
+    }
 }
