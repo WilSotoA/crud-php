@@ -128,4 +128,12 @@ class mainModel
         $sql->execute();
         return $sql;
     }
+
+    protected function deleteRegister(string $table, string $field, int $id)
+    {
+        $sql = $this->connect()->prepare("DELETE FROM $table WHERE $field = :id");
+        $sql->bindParam(":id", $id);
+        $sql->execute();
+        return $sql;
+    }
 }
