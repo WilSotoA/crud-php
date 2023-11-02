@@ -101,7 +101,30 @@ class mainModel
         } elseif ($type == 'Normal') {
             $sql = $this->connect()->prepare("SELECT $field FROM $table");
         }
-        
+
+        $sql->execute();
+        return $sql;
+    }
+
+    protected function updateData(string $table, array $data, string $condition)
+    {
+        $query = "UPDATE $table SET ";
+        $C = 0;
+
+        foreach ($data as $key) {
+            if ($C >= 1) $query .= ",";
+            $query .= $key['name'] . " = " . $key['field'];
+            $C++;
+        }
+
+        $query .= " WHERE " . $condition['name'] . " = " . $condition['field'];
+        $sql = $this->connect()->prepare($query);
+
+        foreach ($data as $key) {
+            $sql->bindParam($key['field'], $key['value']);
+        }
+
+        $sql->bindParam($condition['field'], $condition['value']);
         $sql->execute();
         return $sql;
     }
