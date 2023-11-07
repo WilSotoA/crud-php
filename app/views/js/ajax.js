@@ -1,6 +1,6 @@
 const formsAjax = document.querySelectorAll('.formAjax');
 
-formsAjax.forEach(form => { 
+formsAjax.forEach(form => {
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         Swal.fire({
@@ -37,6 +37,39 @@ formsAjax.forEach(form => {
     });
 });
 
-function alertAjax(alert) { 
-    
- };
+function alertAjax(alert) {
+    if (alert.type === 'simple') {
+        Swal.fire({
+            icon: alert.icon,
+            title: alert.title,
+            text: alert.text,
+            confirmButtonText: 'Aceptar'
+        });
+    } else if (alert.type === 'reload') {
+        Swal.fire({
+            icon: alert.icon,
+            title: alert.title,
+            text: alert.text,
+            confirmButtonText: 'Aceptar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                location.reload();
+            }
+        });
+    } else if (alert.type === 'clean') {
+        Swal.fire({
+            icon: alert.icon,
+            title: alert.title,
+            text: alert.text,
+            confirmButtonText: 'Aceptar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.querySelector('.formAjax').reset();
+            }
+        });
+    } else if (alert.type === 'redirect') {
+        window.location.href = alert.url;
+    };
+};
