@@ -2,7 +2,7 @@
 
 Crud construido con tecnologias como HTML, CSS, Tailwind, PHP, JavaScript, MySQL y modelo MVC
 
-## Lenguajes 
+## Lenguajes
 
 - Frontend: JavaScript, Tailwind
--  Backend: PHP, MySQL
+- Backend: PHP, MySQL

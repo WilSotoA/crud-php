@@ -1,5 +1,5 @@
 <div class="flex min-h-screen items-center justify-center bg-white dark:bg-gray-950 p-12">
-    <form action="">
+    <form action="" method="post">
         <div class="max-w-sm rounded-3xl bg-gradient-to-b from-sky-300 to-purple-500 p-px dark:from-gray-800 dark:to-transparent">
             <div class="rounded-[calc(1.5rem-1px)] bg-white px-10 p-12 dark:bg-gray-900">
                 <div>
