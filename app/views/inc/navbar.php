@@ -13,7 +13,6 @@
                 <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
             </span>
             <span class="group">
-                Contact
                 <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
             </span>
         </div>
