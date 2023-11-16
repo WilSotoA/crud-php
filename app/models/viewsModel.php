@@ -6,7 +6,7 @@ class viewsModel
 {
     protected function obtainViewsModel($view)
     {
-        $blankList = ['dashboard'];
+        $blankList = ['dashboard', 'userNew', 'userList', 'userSearch'];
 
         if (in_array($view, $blankList)) {
             if (is_file('app/views/content/' . $view . '-view.php')) {

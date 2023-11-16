@@ -7,6 +7,7 @@ require_once 'app/views/inc/session_start.php';
 
 if (isset($_GET['views'])) {
     $url = explode('/', $_GET['views']);
+    echo $url;
 } else {
     $url = ['login'];
 }

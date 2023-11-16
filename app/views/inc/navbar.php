@@ -9,7 +9,9 @@
                 <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
             </span>
             <span class="group">
-                Users
+                Usuarios
+                <a href="<?php echo APP_URL; ?>userNew/">Nuevo</a>
+                <a href="<?php echo APP_URL; ?>userList/">Lista</a>
                 <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
             </span>
             <span class="group">
