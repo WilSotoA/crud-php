@@ -8,5 +8,7 @@ para empezar es necesario tener configurado tu entorno local con PHP ya sea con 
 
 ## Lenguajes
 
-- Frontend: JavaScript, Tailwind
+- Frontend: JavaScript, Tailwind.css
 - Backend: PHP, MySQL
+
+> Projecto realizado con el fin de practicar el patron MVC en PHP puro
